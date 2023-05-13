@@ -17,7 +17,7 @@ class IntroductionPageState extends State<IntroductionPage>{
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
@@ -29,12 +29,21 @@ class IntroductionPageState extends State<IntroductionPage>{
               end: Alignment.topCenter,
             ),
           ),
-        ),  
+        ), 
+        Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width*0.85,
+          height: MediaQuery.of(context).size.height*0.38,
+          margin: EdgeInsets.only(
+            top: MediaQuery.of(context).size.height*0.1,
+          ),
+          child: Image.asset("assets/images/start_page_icons.png"),
+        ),
         Container(
           width: MediaQuery.of(context).size.width*0.85,
           height: MediaQuery.of(context).size.height*0.38,
           margin: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height*0.5,
+            top: MediaQuery.of(context).size.height*0.55,
           ),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
