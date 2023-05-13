@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../helpers/const.dart';
+import '../main.dart';
+import 'main_page.dart';
 
 
 
 
-class IntroductionPage extends StatefulWidget {
+class IntroductionPage extends ConsumerWidget{
   const IntroductionPage({super.key});
+
   
   @override
-  State<StatefulWidget> createState() => IntroductionPageState();
-}
-
-class IntroductionPageState extends State<IntroductionPage>{
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final counter = ref.watch(counterProvider);
     return Stack(
       alignment: Alignment.topCenter,
       children: [
@@ -58,7 +59,7 @@ class IntroductionPageState extends State<IntroductionPage>{
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text("Manage Project\nFile Everywhere",
+              Text(startPageTitles[counter],
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.rubik(
@@ -68,7 +69,7 @@ class IntroductionPageState extends State<IntroductionPage>{
                   decoration: TextDecoration.none
                 ),
               ),
-              Text("A storage that will help you easily\nmanage your files and other data",
+              Text(startPageDescription[counter],
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.rubik(
@@ -80,50 +81,57 @@ class IntroductionPageState extends State<IntroductionPage>{
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width*0.15,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    stepCircle(const Color.fromRGBO(86, 178, 206, 1)),
-                    stepCircle(const Color.fromRGBO(255, 255, 255, 1)),
-                    stepCircle(const Color.fromRGBO(255, 255, 255, 1)),
-                  ],
+                height: MediaQuery.of(context).size.height * 0.01,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  separatorBuilder: (context, index) => SizedBox(width: MediaQuery.of(context).size.width*0.04),
+                  itemBuilder: (context, index) {
+                   return Container(
+                      height: MediaQuery.of(context).size.height*0.01, 
+                      width: MediaQuery.of(context).size.height*0.01,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        color: index == counter ?  const Color.fromRGBO(86, 178, 206, 1) : const Color.fromRGBO(255, 255, 255, 1)
+                      ),
+                    );
+                  },
                 ),
               ),
-              Container(
-                width: MediaQuery.of(context).size.width*0.65,
-                height: MediaQuery.of(context).size.height*0.06,
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(33, 210, 192, 1),
-                  borderRadius: BorderRadius.circular(30)
-                ),
-                alignment: Alignment.center,
-                child: Text("Let`s Go",
-                  maxLines: 2,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.rubik(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                    decoration: TextDecoration.none,
+              ScaleTap(
+                onPressed: () {
+                  if (counter < 2) {
+                    ref.read(counterProvider.notifier).state++;
+                  } else {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const MainPage()),
+                    );
+                  }
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width*0.65,
+                  height: MediaQuery.of(context).size.height*0.06,
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(33, 210, 192, 1),
+                    borderRadius: BorderRadius.circular(30)
                   ),
-                ),
+                  alignment: Alignment.center,
+                  child: Text(startPageButtonText[counter],
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.rubik(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                )
               )
             ]
           ),
         )
       ],
-    );
-  }
-
-  Widget stepCircle(color){
-    return Container(
-      height: MediaQuery.of(context).size.height*0.01,
-      width: MediaQuery.of(context).size.height*0.01,
-      decoration:  BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        color: color
-      ),
     );
   }
 }
