@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_scale_tap/flutter_scale_tap.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 
 
@@ -18,7 +22,209 @@ class MainPageState extends State<MainPage>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      color: Color.fromRGBO(255, 255, 255, 1),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height*0.38,
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height*0.065,
+              left: MediaQuery.of(context).size.width*0.03,
+              right: MediaQuery.of(context).size.width*0.03,
+              bottom: MediaQuery.of(context).size.width*0.07,
+            ),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color.fromRGBO(125, 84, 214, 1), Color.fromRGBO(160, 110, 229, 1)],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(60),
+                bottomRight: Radius.circular(60)
+              )
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(width: MediaQuery.of(context).size.width*0.05),
+                    Text("QFile",
+                      style: GoogleFonts.ubuntu(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                        decoration: TextDecoration.none
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.57),
+                    const Icon(Iconsax.search_normal_1, size: 25, color: Color.fromRGBO(255, 255, 255, 1)),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.06),
+                    const Icon(Iconsax.notification, size: 25, color: Color.fromRGBO(255, 255, 255, 1)),
+                  ],
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width*0.86,
+                  height: MediaQuery.of(context).size.height*0.23,
+                  padding: EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width*0.08,
+                    left: MediaQuery.of(context).size.width*0.07,
+                    top: MediaQuery.of(context).size.height*0.02,
+                    bottom: MediaQuery.of(context).size.height*0.02,
+                  ),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [Color.fromRGBO(255, 255, 255, 0.15), Color.fromRGBO(255, 255, 255, 0.1)],
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                    ),
+                    border: Border.all(width: 0.5, color: const Color.fromRGBO(255, 255, 255, 1)),
+                    borderRadius: BorderRadius.circular(40)
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircularPercentIndicator(
+                        radius: MediaQuery.of(context).size.height*0.085,
+                        lineWidth: 18,
+                        percent: 0.6,
+                        startAngle: 100,
+                        circularStrokeCap: CircularStrokeCap.round,
+                        center: Text("60%",
+                          style: GoogleFonts.ubuntu(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                            decoration: TextDecoration.none
+                          ),
+                        ),
+                        backgroundColor: const Color.fromRGBO(233, 233, 233, 1),
+                        progressColor: const Color.fromRGBO(33, 210, 192, 1),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height*0.17,
+                        child:Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width*0.01,
+                                  height: MediaQuery.of(context).size.width*0.01,
+                                  decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(255, 255, 255, 0.7),
+                                    borderRadius: BorderRadius.circular(100)
+                                  ),
+                                ),
+                                SizedBox(width: MediaQuery.of(context).size.width*0.02),
+                                Text("Free Internal",
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color.fromRGBO(255, 255, 255, 0.7),
+                                    decoration: TextDecoration.none
+                                  ),
+                                )
+                              ],
+                            ),
+                            Text("34.9 GB",
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500,
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                decoration: TextDecoration.none
+                              ),
+                            ),
+                            SizedBox(height:  MediaQuery.of(context).size.height*.01),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width*0.01,
+                                  height: MediaQuery.of(context).size.width*0.01,
+                                  decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(33, 210, 192, 1),
+                                    borderRadius: BorderRadius.circular(100)
+                                  ),
+                                ),
+                                SizedBox(width: MediaQuery.of(context).size.width*0.02),
+                                Text("Used",
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color.fromRGBO(255, 255, 255, 0.7),
+                                    decoration: TextDecoration.none
+                                  ),
+                                )
+                              ],
+                            ),
+                            Text("78.5 GB",
+                              style: GoogleFonts.ubuntu(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w500,
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                decoration: TextDecoration.none
+                              ),
+                            ),
+                            ScaleTap(
+                              onPressed: () {
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height*0.015
+                                ),
+                                width: MediaQuery.of(context).size.width*0.27,
+                                height: MediaQuery.of(context).size.height*0.04,
+                                decoration: BoxDecoration(
+                                  color: const Color.fromRGBO(33, 210, 192, 1),
+                                  borderRadius: BorderRadius.circular(15)
+                                ),
+                                alignment: Alignment.center,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text("Manage",
+                                        maxLines: 1,
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.rubik(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: Colors.white,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      ),
+                                      const Icon(Icons.arrow_outward_rounded, color: Colors.white, size: 20,)
+                                    ]
+                                  )
+                              )
+                            )
+                          ],
+                        )
+                      )
+                    ]
+                  ),
+                )
+              ]
+            )
+            ,
+          )
+        ]
+      ),
     );
   }
 }

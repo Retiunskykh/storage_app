@@ -12,6 +12,8 @@ dependencies:
   flutter_riverpod: ^2.3.6
   flutter_scale_tap: ^1.0.5
   google_fonts: ^4.0.4
+  iconsax: ^0.0.8
+  percent_indicator: ^4.2.3
   riverpod: ^2.3.6
 
 dev_dependencies:
