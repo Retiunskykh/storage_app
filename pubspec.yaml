@@ -26,3 +26,7 @@ flutter:
 
   assets:
     - assets/images/start_page_icons.png
+    - assets/files_icons/heic.png
+    - assets/files_icons/pdf.png
+    - assets/files_icons/xls.png
+    - assets/files_icons/video.png

@@ -3,6 +3,7 @@ import 'package:flutter_scale_tap/flutter_scale_tap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:storage_app/helpers/const.dart';
 
 
 
@@ -201,14 +202,14 @@ class MainPageState extends State<MainPage>{
                                       Text("Manage",
                                         maxLines: 1,
                                         textAlign: TextAlign.center,
-                                        style: GoogleFonts.rubik(
+                                        style: GoogleFonts.ubuntu(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white,
                                           decoration: TextDecoration.none,
                                         ),
                                       ),
-                                      const Icon(Icons.arrow_outward_rounded, color: Colors.white, size: 20,)
+                                      const  Icon(Icons.arrow_outward_rounded, color: Colors.white, size: 20,)
                                     ]
                                   )
                               )
@@ -222,9 +223,227 @@ class MainPageState extends State<MainPage>{
               ]
             )
             ,
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height*0.62,
+            padding: EdgeInsets.only(
+              right: MediaQuery.of(context).size.width*0.05,
+              left: MediaQuery.of(context).size.width*0.05,
+              top: MediaQuery.of(context).size.height*0.03,
+              //bottom: MediaQuery.of(context).size.height*0.02,
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("Activity",
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.ubuntu(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                          decoration: TextDecoration.none,
+                        ),
+                      ),
+                      const Icon(Iconsax.more, color: Color.fromRGBO(0, 0, 0, 1), size: 25)
+                    ],
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width*0.9,
+                    height: MediaQuery.of(context).size.height*0.25,
+                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.03),
+                    padding: EdgeInsets.only(
+                      right: MediaQuery.of(context).size.width*0.07,
+                      left: MediaQuery.of(context).size.width*0.07,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      borderRadius: BorderRadius.circular(40),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 5,
+                          spreadRadius: 2,
+                          offset: const Offset(0, 3), // зсув тіні за горизонталлю і вертикаллю
+                        ),
+                      ]
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        activityChart(10, "Sun"),
+                        activityChart(7, "Mon"),
+                        activityChart(12, "Tue"),
+                        activityChart(15, "Wed"),
+                        activityChart(13, "Thu"),
+                        activityChart(11, "Fri"),
+                        activityChart(8, "Sat"),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height*0.03),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text("Recent Files",
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.ubuntu(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                          decoration: TextDecoration.none,
+                        ),
+                      ),
+                      const Icon(Iconsax.more, color: Color.fromRGBO(0, 0, 0, 1), size: 25)
+                    ],
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width*0.9,
+                    height: MediaQuery.of(context).size.height*0.94,
+                    margin: EdgeInsets.only(top: MediaQuery.of(context).size.height*0.02),
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 10,
+                      padding: EdgeInsets.zero,
+                      itemBuilder:(context, index) {
+                        final Map <String, String> file = recentFiles[index];
+                        return Container(
+                          alignment: Alignment.center,
+                          height: MediaQuery.of(context).size.height*0.09,
+                          padding: EdgeInsets.symmetric(
+                            vertical: MediaQuery.of(context).size.height*0.02,
+                            horizontal: MediaQuery.of(context).size.width*0.03,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset("assets/files_icons/${file["type"]}.png",
+                                width: MediaQuery.of(context).size.width*0.1,
+                                height: MediaQuery.of(context).size.height*0.08
+                              ),
+                              Container(
+                                width:  MediaQuery.of(context).size.width*0.5,
+
+                                alignment: Alignment.centerLeft,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(file["name"].toString(), 
+                                      style: GoogleFonts.ubuntu(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: const Color.fromRGBO(0, 0, 0, 1),
+                                        decoration: TextDecoration.none,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width*0.25,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(file["type"]!.toUpperCase(),
+                                            style: GoogleFonts.ubuntu(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: const Color.fromRGBO(60, 60, 60, 1),
+                                              decoration: TextDecoration.none,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context).size.width*0.01,
+                                            height: MediaQuery.of(context).size.width*0.01,
+                                            decoration: BoxDecoration(
+                                              color: const Color.fromRGBO(100, 100, 100, 1),
+                                              borderRadius: BorderRadius.circular(100)
+                                            ),
+                                          ),
+                                          Text(file["size"].toString(),
+                                            style: GoogleFonts.ubuntu(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                              color: const Color.fromRGBO(100, 100, 100, 1),
+                                              decoration: TextDecoration.none,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ),
+                                  ],
+                                )
+                              ),
+                              Container(
+                                alignment: Alignment.bottomRight,
+                                child: Text("5 min ago",
+                                  style: GoogleFonts.ubuntu(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color.fromRGBO(100, 100, 100, 1),
+                                    decoration: TextDecoration.none,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  )
+                ]
+              ),
+            )
           )
         ]
       ),
+    );
+  }
+
+  Widget activityChart(int actions, String day){
+    return SizedBox(
+      width: MediaQuery.of(context).size.width*0.1,
+      height: MediaQuery.of(context).size.height*0.18,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            alignment: Alignment.bottomCenter,
+            width: MediaQuery.of(context).size.width*0.06,
+            height: MediaQuery.of(context).size.height*0.15,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(186, 163, 232, 0.2),
+              borderRadius: BorderRadius.circular(20)
+            ),
+            child: Container(
+              width: MediaQuery.of(context).size.width*0.06,
+              height: MediaQuery.of(context).size.height*(actions*0.01),
+              decoration: BoxDecoration(
+                color: actions!=15 ? const Color.fromRGBO(186, 163, 232, 1) : const Color.fromRGBO(124, 82, 214, 1),
+                borderRadius: BorderRadius.circular(20)
+              ),
+            )
+          ),
+          Text(day, 
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.ubuntu(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: const Color.fromRGBO(50, 50, 50, 1),
+              decoration: TextDecoration.none,
+            ),
+          )
+        ],
+      )
     );
   }
 }
