@@ -8,10 +8,10 @@ import 'package:storage_app/pages/manage_page.dart';
 final counterProvider = StateProvider<int>((ref) => 0);
 
 void main() {
-  runApp(const ProviderScope(
+  runApp( ProviderScope(
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ManagePage()
+      home: IntroductionPage()
     ),
   ));
 }

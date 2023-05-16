@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:storage_app/helpers/const.dart';
+import 'package:storage_app/pages/manage_page.dart';
 
 import '../widgets/activity_chart.dart';
 
@@ -177,6 +178,9 @@ class MainPage extends StatelessWidget{
                             ),
                             ScaleTap(
                               onPressed: () {
+                                 Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (_) => const ManagePage()),
+                                );
                               },
                               child: Container(
                                 margin: EdgeInsets.only(
