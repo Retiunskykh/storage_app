@@ -1,9 +1,9 @@
 ⚡ Flutter Mobile Storage Manager App (Backendless).
 
-![](assets/images/Mockups/1.png)
-![](assets/images/Mockups/2.png)
-![](assets/images/Mockups/3.png)
-![](assets/images/Mockups/4.png)
+![](assets/Mockups/1.png)
+![](assets/Mockups/2.png)
+![](assets/Mockups/3.png)
+![](assets/Mockups/4.png)
 
 Technologies: 
   - Language: Dart 
