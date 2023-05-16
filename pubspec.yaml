@@ -26,6 +26,19 @@ flutter:
 
   assets:
     - assets/images/start_page_icons.png
+    - assets/images/folder.png
+    - assets/images/other.png
+    - assets/images/apps.png
+    - assets/images/images.png
+    - assets/images/documents.png
+    - assets/images/audio.png
+    - assets/images/videos.png
+    - assets/images/bigfile1.jpg
+    - assets/images/bigfile2.jpg
+    - assets/images/bigfile3.jpg
+    - assets/images/bigfile4.jpg
+    - assets/images/bigfile5.jpg
+    - assets/images/bigfile6.jpg
     - assets/files_icons/heic.png
     - assets/files_icons/pdf.png
     - assets/files_icons/xls.png

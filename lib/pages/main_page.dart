@@ -5,25 +5,17 @@ import 'package:iconsax/iconsax.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:storage_app/helpers/const.dart';
 
+import '../widgets/activity_chart.dart';
 
 
-
-
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
-  
-  @override
-  State<StatefulWidget> createState() => MainPageState();
-}
-
-class MainPageState extends State<MainPage>{
+class MainPage extends StatelessWidget{
 
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Container(
-      color: Color.fromRGBO(255, 255, 255, 1),
+      color: const Color.fromRGBO(255, 255, 255, 1),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Column(
@@ -59,6 +51,8 @@ class MainPageState extends State<MainPage>{
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(width: MediaQuery.of(context).size.width*0.05),
+                    const Icon(Iconsax.directbox_send, size: 25, color: Color.fromRGBO(255, 255, 255, 1)),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.015),
                     Text("QFile",
                       style: GoogleFonts.ubuntu(
                         fontSize: 18,
@@ -67,7 +61,7 @@ class MainPageState extends State<MainPage>{
                         decoration: TextDecoration.none
                       ),
                     ),
-                    SizedBox(width: MediaQuery.of(context).size.width*0.57),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.49),
                     const Icon(Iconsax.search_normal_1, size: 25, color: Color.fromRGBO(255, 255, 255, 1)),
                     SizedBox(width: MediaQuery.of(context).size.width*0.06),
                     const Icon(Iconsax.notification, size: 25, color: Color.fromRGBO(255, 255, 255, 1)),
@@ -203,13 +197,13 @@ class MainPageState extends State<MainPage>{
                                         maxLines: 1,
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.ubuntu(
-                                          fontSize: 18,
+                                          fontSize: 15,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white,
                                           decoration: TextDecoration.none,
                                         ),
                                       ),
-                                      const  Icon(Icons.arrow_outward_rounded, color: Colors.white, size: 20,)
+                                      const  Icon(Icons.arrow_outward_rounded, color: Colors.white, size: 18,)
                                     ]
                                   )
                               )
@@ -231,7 +225,6 @@ class MainPageState extends State<MainPage>{
               right: MediaQuery.of(context).size.width*0.05,
               left: MediaQuery.of(context).size.width*0.05,
               top: MediaQuery.of(context).size.height*0.03,
-              //bottom: MediaQuery.of(context).size.height*0.02,
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -276,13 +269,13 @@ class MainPageState extends State<MainPage>{
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        activityChart(10, "Sun"),
-                        activityChart(7, "Mon"),
-                        activityChart(12, "Tue"),
-                        activityChart(15, "Wed"),
-                        activityChart(13, "Thu"),
-                        activityChart(11, "Fri"),
-                        activityChart(8, "Sat"),
+                        activityChart(context, 10, "Sun"),
+                        activityChart(context, 7, "Mon"),
+                        activityChart(context, 12, "Tue"),
+                        activityChart(context, 15, "Wed"),
+                        activityChart(context, 13, "Thu"),
+                        activityChart(context, 11, "Fri"),
+                        activityChart(context, 8, "Sat"),
                       ],
                     ),
                   ),
@@ -404,46 +397,6 @@ class MainPageState extends State<MainPage>{
           )
         ]
       ),
-    );
-  }
-
-  Widget activityChart(int actions, String day){
-    return SizedBox(
-      width: MediaQuery.of(context).size.width*0.1,
-      height: MediaQuery.of(context).size.height*0.18,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            alignment: Alignment.bottomCenter,
-            width: MediaQuery.of(context).size.width*0.06,
-            height: MediaQuery.of(context).size.height*0.15,
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(186, 163, 232, 0.2),
-              borderRadius: BorderRadius.circular(20)
-            ),
-            child: Container(
-              width: MediaQuery.of(context).size.width*0.06,
-              height: MediaQuery.of(context).size.height*(actions*0.01),
-              decoration: BoxDecoration(
-                color: actions!=15 ? const Color.fromRGBO(186, 163, 232, 1) : const Color.fromRGBO(124, 82, 214, 1),
-                borderRadius: BorderRadius.circular(20)
-              ),
-            )
-          ),
-          Text(day, 
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.ubuntu(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              color: const Color.fromRGBO(50, 50, 50, 1),
-              decoration: TextDecoration.none,
-            ),
-          )
-        ],
-      )
     );
   }
 }

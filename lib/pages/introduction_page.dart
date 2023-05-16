@@ -104,7 +104,7 @@ class IntroductionPage extends ConsumerWidget{
                     ref.read(counterProvider.notifier).state++;
                   } else {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const MainPage()),
+                      MaterialPageRoute(builder: (_) => MainPage()),
                     );
                   }
                 },
